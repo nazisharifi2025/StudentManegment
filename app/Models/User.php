@@ -22,7 +22,13 @@ class User extends Authenticatable
         'email',
         'password',
     ];
+       public function teachers(){
+        return $this->hasMany(Teacher::class, 'userId');
+    }
 
+    public function students(){
+        return $this->hasOne(Student::class, 'userId');
+    }
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -32,15 +38,6 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-
-    public function teachers(){
-        return $this->hasMany(Teacher::class, 'userId');
-    }
-
-    public function students(){
-        return $this->hasOne(Student::class, 'userId');
-    }
-
     /**
      * Get the attributes that should be cast.
      *
